@@ -5,6 +5,10 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     println!("{:?}", args);
 
+    for arg in args {
+        slice_string(arg);
+    }
+
 
     // (all the type annotations are superfluous)
     // A reference to a string allocated in read only memory
@@ -46,3 +50,6 @@ fn main() {
     println!("Bob says: {}", bob);
 }
 
+fn slice_string(string_value: str) {
+    println!("The value of provided string is: {}", string_value);
+}
