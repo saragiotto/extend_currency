@@ -17,6 +17,8 @@ def dealWithCents(value):
     print "Decimal:", str(decimalValue)
     print "-------------------------------------"
 
+    append = " centavos"
+    connector = ""
     unitWord = ""
     if unitValue != "0":
         switcher = {
@@ -30,10 +32,9 @@ def dealWithCents(value):
             8: "oito",
             9: "nove"
             }
-        unitWord = switcher.get(int(unitValue), "") 
+        unitWord = switcher.get(int(unitValue), "").title()
 
-    unitWord = unitWord + " centavos!"
-    word = ""
+    decimalWord = ""
     if decimalValue == "1":
         switcher = {
             0: "Dez", 
@@ -47,8 +48,7 @@ def dealWithCents(value):
             8: "Dezoito",
             9: "Dezenove"
             }
-        word = switcher.get(int(unitValue), "Invalid unitValue")
-        print word + " centavos!"
+        decimalWord = switcher.get(int(unitValue), "Invalid unitValue").title()
     else:
         if decimalValue != "0":
             switcher = {
@@ -61,8 +61,22 @@ def dealWithCents(value):
                 8: "Oitenta",
                 9: "Noventa"
                 }
-            word = switcher.get(int(decimalValue), "Invalid decimalValue")
-        print word + " e " + unitWord
+            decimalWord = switcher.get(int(decimalValue), "Invalid decimalValue")
+
+    if decimalValue == "0":
+        if unitValue == "1":
+            append = "centavo"
+        if unitValue == "0":
+            append = ""
+    else:
+        if decimalValue != "1" and unitValue != "0":
+            connector = "e"
+        else: 
+            unitWord = ""
+
+    result = [decimalWord, connector, unitWord, append]
+
+    print result
 
     print "-------------------------------------"
 
