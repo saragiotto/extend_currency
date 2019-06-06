@@ -5,19 +5,18 @@ import sys
 def cleanUpNumber(numberStr):
     return numberStr.replace(".", "").replace(",", "")
 
-def dealWithCents(value):
+def dealWithDecimals(value, singleName, pluralName):
     if len(value) < 3:
         return
 
     centsValue = value[-2:]
     unitValue = centsValue[1]
     decimalValue = centsValue[0]
-    print "Centavos:", str(centsValue)
-    print "Unidade:", str(unitValue)
     print "Decimal:", str(decimalValue)
+    print "Unidade:", str(unitValue)
     print "-------------------------------------"
 
-    append = "centavos"
+    append = pluralName 
     connector = ""
     unitWord = ""
     if unitValue != "0":
@@ -65,7 +64,7 @@ def dealWithCents(value):
 
     if decimalValue == "0":
         if unitValue == "1":
-            append = "centavo"
+            append = singleName
         if unitValue == "0":
             append = ""
     else:
@@ -75,11 +74,7 @@ def dealWithCents(value):
             unitWord = ""
 
     result = [decimalWord, connector, unitWord, append]
-    finalList = list(filter(lambda x: len(x) > 0, result))
-
-    print " ".join(finalList)
-
-    print "-------------------------------------"
+    return list(filter(lambda x: len(x) > 0, result))
 
 def main():
     print "Script name:", sys.argv[0]
@@ -90,10 +85,21 @@ def main():
         print str(arg)
 
     number = str(sys.argv[1])
-    invertedNumber = number[::-1]
-    clenedString = cleanUpNumber(invertedNumber)
-    dealWithCents(cleanUpNumber(number))
-    for chat in clenedString:
-        print(str(chat))
+    clenedString = cleanUpNumber(number)
+    singleCents = "centavo"
+    pluralCents = "centavos"
+    centsResult = dealWithDecimals(clenedString, singleCents, pluralCents)
+
+    singleCurrency = "real"
+    pluralCurrency = "reais"
+    integerPart = clenedString[:-2]
+    print(integerPart)
+    integerResult = dealWithDecimals(integerPart, singleCurrency, pluralCurrency)
+
+    print "-------------------------------------"
+    print centsResult
+    print integerResult
+    #print ' '.join(dealWithDecimals(cleanUpNumber(number), singleCents, pluralCents))
+    print "-------------------------------------"
 
 main()
