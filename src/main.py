@@ -6,10 +6,11 @@ def cleanUpNumber(numberStr):
     return numberStr.replace(".", "").replace(",", "")
 
 def dealWithDecimals(value, singleName, pluralName):
-    if len(value) < 3:
-        return
+    number = str(value)
+    if len(number) < 2:
+        number = "0" + number
 
-    centsValue = value[-2:]
+    centsValue = number[-2:]
     unitValue = centsValue[1]
     decimalValue = centsValue[0]
     print "Decimal:", str(decimalValue)
@@ -76,6 +77,16 @@ def dealWithDecimals(value, singleName, pluralName):
     result = [decimalWord, connector, unitWord, append]
     return list(filter(lambda x: len(x) > 0, result))
 
+def glueDecimalAndCents(decimals, cents):
+    result = list(decimals)
+    if len(cents) > 0:
+        centList = list(cents)
+        result.append("e")
+        result.extend(centList)
+    
+    return ' '.join(result)
+        
+
 def main():
     print "Script name:", sys.argv[0]
     print "Arg count:", len(sys.argv)
@@ -93,13 +104,12 @@ def main():
     singleCurrency = "real"
     pluralCurrency = "reais"
     integerPart = clenedString[:-2]
-    print(integerPart)
     integerResult = dealWithDecimals(integerPart, singleCurrency, pluralCurrency)
 
+    print integerResult + centsResult
+
     print "-------------------------------------"
-    print centsResult
-    print integerResult
-    #print ' '.join(dealWithDecimals(cleanUpNumber(number), singleCents, pluralCents))
+    print glueDecimalAndCents(integerResult, centsResult)
     print "-------------------------------------"
 
 main()
