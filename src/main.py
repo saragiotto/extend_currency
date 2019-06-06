@@ -17,7 +17,7 @@ def dealWithCents(value):
     print "Decimal:", str(decimalValue)
     print "-------------------------------------"
 
-    append = " centavos"
+    append = "centavos"
     connector = ""
     unitWord = ""
     if unitValue != "0":
@@ -75,8 +75,9 @@ def dealWithCents(value):
             unitWord = ""
 
     result = [decimalWord, connector, unitWord, append]
+    finalList = list(filter(lambda x: len(x) > 0, result))
 
-    print result
+    print " ".join(finalList)
 
     print "-------------------------------------"
 
