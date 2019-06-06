@@ -13,9 +13,9 @@ def dealWithDecimals(value, singleName, pluralName):
     centsValue = number[-2:]
     unitValue = centsValue[1]
     decimalValue = centsValue[0]
-    print "Decimal:", str(decimalValue)
-    print "Unidade:", str(unitValue)
-    print "-------------------------------------"
+    # print "Decimal:", str(decimalValue)
+    # print "Unidade:", str(unitValue)
+    # print "-------------------------------------"
 
     append = pluralName 
     connector = ""
@@ -78,6 +78,9 @@ def dealWithDecimals(value, singleName, pluralName):
     return list(filter(lambda x: len(x) > 0, result))
 
 def glueDecimalAndCents(decimals, cents):
+    if len(decimals) == 0:
+        decimals = ["Zero reais"]
+
     result = list(decimals)
     if len(cents) > 0:
         centList = list(cents)
@@ -86,16 +89,15 @@ def glueDecimalAndCents(decimals, cents):
     
     return ' '.join(result)
         
+def printNumberInWords(value):
+    
+    number = str(value)
+    if len(number) < 2:
+        number = "00" + number
+    else:
+        if len(number) < 3:
+            number = "0" + number
 
-def main():
-    print "Script name:", sys.argv[0]
-    print "Arg count:", len(sys.argv)
-    print "-------------------------------------"
-
-    for arg in sys.argv:
-        print str(arg)
-
-    number = str(sys.argv[1])
     clenedString = cleanUpNumber(number)
     singleCents = "centavo"
     pluralCents = "centavos"
@@ -106,10 +108,25 @@ def main():
     integerPart = clenedString[:-2]
     integerResult = dealWithDecimals(integerPart, singleCurrency, pluralCurrency)
 
-    print integerResult + centsResult
+    # print integerResult + centsResult
 
+    print number + "  ->  " + glueDecimalAndCents(integerResult, centsResult)
+
+def main():
+
+    if len(sys.argv) > 1 and str(sys.argv[1]) == "test":
+        for n in range(0, 9999):
+            printNumberInWords(int(n))
+
+        return
+
+    print "Script name:", sys.argv[0]
+    print "Arg count:", len(sys.argv)
     print "-------------------------------------"
-    print glueDecimalAndCents(integerResult, centsResult)
-    print "-------------------------------------"
+
+    for arg in sys.argv:
+        print str(arg)
+
+    printNumberInWords(sys.argv[1])
 
 main()
