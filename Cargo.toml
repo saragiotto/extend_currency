@@ -1,7 +1,0 @@
-[package]
-name = "extend_currency"
-version = "0.1.0"
-authors = ["Leonardo Saragiotto <leonardo.saragiotto@gmail.com>"]
-edition = "2018"
-
-[dependencies]
