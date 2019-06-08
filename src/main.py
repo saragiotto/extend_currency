@@ -139,7 +139,8 @@ def main():
             sysoutVersion()
             return
 
-        if not str(sys.argv[1]).isdigit():
+        evalNumber = cleanUpNumber(sys.argv[1])
+        if not evalNumber.isdigit():
             print "invalid number " + sys.argv[1]
             return
 
