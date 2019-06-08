@@ -112,12 +112,39 @@ def printNumberInWords(value):
 
     print number + "  ->  " + glueDecimalAndCents(integerResult, centsResult)
 
+def sysoutHelp():
+    print " Esse programa expressa numeros monetarios por extenso."
+
+    print " Por exemplo: "
+    print " $ python main.py 1,23"
+    print " $ 1,23  ->  Um real e Vinte e Tres centavos"
+
+def sysoutVersion():
+    print "0.1.0" 
+
 def main():
 
-    if len(sys.argv) > 1 and str(sys.argv[1]) == "test":
-        for n in range(0, 9999):
-            printNumberInWords(int(n))
+    if len(sys.argv) > 1:
+        if str(sys.argv[1]) == "test":
+            for n in range(0, 9999):
+                printNumberInWords(int(n))
 
+            return
+
+        if str(sys.argv[1]) == "help":
+            sysoutHelp()
+            return
+
+        if str(sys.argv[1]) == "version":
+            sysoutVersion()
+            return
+
+        if not str(sys.argv[1]).isdigit():
+            print "invalid number " + sys.argv[1]
+            return
+
+    else: 
+        sysoutHelp()
         return
 
     print "Script name:", sys.argv[0]
