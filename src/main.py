@@ -112,6 +112,14 @@ def printNumberInWords(value):
 
     print number + "  ->  " + glueDecimalAndCents(integerResult, centsResult)
 
+def sysoutUsage():
+    print "usage: main.py [version] [help] [test] [number value]"
+    print "   "
+    print "   vesion        print out the vesion of this program"
+    print "   help          Show some usefull information about this program"
+    print "   test          Execute some unit tests"
+    print "   numberVlaue   Should be positive number, with two decimals, separeted by comma or period."
+
 def sysoutHelp():
     print " Esse programa expressa numeros monetarios por extenso."
 
@@ -145,7 +153,7 @@ def main():
             return
 
     else: 
-        sysoutHelp()
+        sysoutUsage()
         return
 
     print "Script name:", sys.argv[0]
