@@ -116,9 +116,10 @@ def printNumberInWords(value):
 def sysoutUsage():
     print "usage: main.py [version] [help] [test] [number value]"
     print "   "
-    print "   vesion        print out the vesion of this program"
-    print "   help          Show some usefull information about this program"
-    print "   test          Execute some unit tests"
+    print "   --vesion        print out the vesion of this program"
+    print "   --help          Show some usefull information about this program"
+    print "   --test          Execute some unit tests"
+    print "   --file          Process a input file"
     print "   numberVlaue   Should be positive number, with two decimals, separeted by comma or period."
 
 def sysoutHelp():
