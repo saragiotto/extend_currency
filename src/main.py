@@ -133,9 +133,6 @@ def sysoutVersion():
 
 def main():
 
-    for line in fileinput.input():
-        print line
-
     if len(sys.argv) > 1:
         if str(sys.argv[1]) == "test":
             for n in range(0, 9999):
@@ -153,19 +150,16 @@ def main():
 
         evalNumber = cleanUpNumber(sys.argv[1])
         if not evalNumber.isdigit():
-            print "invalid number " + sys.argv[1]
+            for line in fileinput.input():
+                cleanLine = line.rstrip()
+                evalLine = cleanUpNumber(cleanLine)
+                if evalLine.isdigit():
+                    printNumberInWords(cleanLine)
             return
 
     else: 
         sysoutUsage()
         return
-
-    print "Script name:", sys.argv[0]
-    print "Arg count:", len(sys.argv)
-    print "-------------------------------------"
-
-    for arg in sys.argv:
-        print str(arg)
 
     printNumberInWords(sys.argv[1])
 
