@@ -139,29 +139,29 @@ def processFile(fileName):
         if evalLine.isdigit():
             printNumberInWords(cleanLine)
 
-
 def main():
 
     if len(sys.argv) > 1:
-        if str(sys.argv[1]) == "--test":
+        firstParm = str(sys.argv[1])
+        if firstParm == "--test" or firstParm == "-t":
             for n in range(0, 9999):
                 printNumberInWords(int(n))
 
             return
 
-        if str(sys.argv[1]) == "--help":
+        if firstParm == "--help" or firstParm == "-h":
             sysoutHelp()
             return
 
-        if str(sys.argv[1]) == "--version":
+        if firstParm == "--version" or firstParm == "-v":
             sysoutVersion()
             return
 
-        if str(sys.argv[1]) == "--file":
+        if firstParm == "--file" or firstParm == "-f":
             processFile(sys.argv[2])
             return
 
-        evalNumber = cleanUpNumber(sys.argv[1])
+        evalNumber = cleanUpNumber(firstParm)
         if not evalNumber.isdigit():
             print "Invalid number provided " + evalNumber
             return
