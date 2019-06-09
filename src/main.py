@@ -131,30 +131,38 @@ def sysoutHelp():
 def sysoutVersion():
     print "0.1.0" 
 
+def processFile(fileName):
+    for line in fileinput.input(fileName):
+        cleanLine = line.rstrip()
+        evalLine = cleanUpNumber(cleanLine)
+        if evalLine.isdigit():
+            printNumberInWords(cleanLine)
+
+
 def main():
 
     if len(sys.argv) > 1:
-        if str(sys.argv[1]) == "test":
+        if str(sys.argv[1]) == "--test":
             for n in range(0, 9999):
                 printNumberInWords(int(n))
 
             return
 
-        if str(sys.argv[1]) == "help":
+        if str(sys.argv[1]) == "--help":
             sysoutHelp()
             return
 
-        if str(sys.argv[1]) == "version":
+        if str(sys.argv[1]) == "--version":
             sysoutVersion()
+            return
+
+        if str(sys.argv[1]) == "--file":
+            processFile(sys.argv[2])
             return
 
         evalNumber = cleanUpNumber(sys.argv[1])
         if not evalNumber.isdigit():
-            for line in fileinput.input():
-                cleanLine = line.rstrip()
-                evalLine = cleanUpNumber(cleanLine)
-                if evalLine.isdigit():
-                    printNumberInWords(cleanLine)
+            print "Invalid number provided " + evalNumber
             return
 
     else: 
