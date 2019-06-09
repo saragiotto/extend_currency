@@ -1,6 +1,7 @@
 # Python 2.7
 
 import sys
+import fileinput
 
 def cleanUpNumber(numberStr):
     return numberStr.replace(".", "").replace(",", "")
@@ -131,6 +132,9 @@ def sysoutVersion():
     print "0.1.0" 
 
 def main():
+
+    for line in fileinput.input():
+        print line
 
     if len(sys.argv) > 1:
         if str(sys.argv[1]) == "test":
