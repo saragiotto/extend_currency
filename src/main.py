@@ -120,7 +120,7 @@ def sysoutUsage():
     print "   --help          Show some usefull information about this program"
     print "   --test          Execute some unit tests"
     print "   --file          Process a input file"
-    print "   numberVlaue   Should be positive number, with two decimals, separeted by comma or period."
+    print "   numberVlaue     Should be positive number, with two decimals, separeted by comma or period."
 
 def sysoutHelp():
     print " Esse programa expressa numeros monetarios por extenso."
