@@ -2,6 +2,7 @@
 
 import sys
 import fileinput
+import my_script
 
 def cleanUpNumber(numberStr):
     return numberStr.replace(".", "").replace(",", "")
@@ -141,6 +142,7 @@ def processFile(fileName):
 
 def main():
 
+    print my_script.MyClass.attribute
     if len(sys.argv) > 1:
         firstParm = str(sys.argv[1])
         if firstParm == "--test" or firstParm == "-t":
