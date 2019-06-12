@@ -3,12 +3,14 @@
 import sys
 import fileinput
 from my_script import *
+from string_numbers import *
 
 def cleanUpNumber(numberStr):
     return numberStr.replace(".", "").replace(",", "")
 
 def dealWithDecimals(value, singleName, pluralName):
     number = str(value)
+    parser = StringNumbers()
     if len(number) < 2:
         number = "0" + number
 
@@ -23,18 +25,7 @@ def dealWithDecimals(value, singleName, pluralName):
     connector = ""
     unitWord = ""
     if unitValue != "0":
-        switcher = {
-            1: "um",
-            2: "dois", 
-            3: "tres",
-            4: "quatro",
-            5: "cinco",
-            6: "seis",
-            7: "sete",
-            8: "oito",
-            9: "nove"
-            }
-        unitWord = switcher.get(int(unitValue), "").title()
+        unitWord = StringNumbers.unitString(str(unitValue))
 
     decimalWord = ""
     if decimalValue == "1":
