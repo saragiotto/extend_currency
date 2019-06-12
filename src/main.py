@@ -25,7 +25,7 @@ def dealWithDecimals(value, singleName, pluralName):
     connector = ""
     unitWord = ""
     if unitValue != "0":
-        unitWord = StringNumbers.unitString(str(unitValue))
+        unitWord = parser.unitString(str(unitValue))
 
     decimalWord = ""
     if decimalValue == "1":
@@ -133,9 +133,6 @@ def processFile(fileName):
 
 def main():
 
-    print MyClass.attribute
-    newObject = MyClass()
-    newObject.func()
     if len(sys.argv) > 1:
         firstParm = str(sys.argv[1])
         if firstParm == "--test" or firstParm == "-t":

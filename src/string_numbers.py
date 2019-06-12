@@ -1,6 +1,5 @@
 class StringNumbers():
-    @staticmethod
-    def unitString(number):
+    def unitString(self, number):
         switcher = {
             0: "zero",
             1: "Um",
