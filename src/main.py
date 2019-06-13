@@ -26,34 +26,7 @@ def dealWithDecimals(value, singleName, pluralName):
     if unitValue != "0":
         unitWord = parser.unitString(str(unitValue))
 
-    decimalWord = ""
-    if decimalValue == "1":
-        switcher = {
-            0: "Dez", 
-            1: "Onze",
-            2: "Doze",
-            3: "Treze",
-            4: "Quatorze",
-            5: "Quinze",
-            6: "Dezesseis",
-            7: "Dezessete",
-            8: "Dezoito",
-            9: "Dezenove"
-            }
-        decimalWord = switcher.get(int(unitValue), "Invalid unitValue").title()
-    else:
-        if decimalValue != "0":
-            switcher = {
-                2: "Vinte",
-                3: "Trinta",
-                4: "Quarenta",
-                5: "Cinquenta",
-                6: "Sessenta",
-                7: "Setenta",
-                8: "Oitenta",
-                9: "Noventa"
-                }
-            decimalWord = switcher.get(int(decimalValue), "Invalid decimalValue")
+    decimalWord = parser.decimalString(decimalValue + unitValue)
 
     if decimalValue == "0":
         if unitValue == "1":
