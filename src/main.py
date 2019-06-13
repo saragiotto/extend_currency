@@ -1,8 +1,7 @@
-# Python 2.7
+#S Python 2.7
 
 import sys
 import fileinput
-from my_script import *
 from string_numbers import *
 
 def cleanUpNumber(numberStr):
